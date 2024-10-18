@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Factorial</title>
+</head>
+<body>
+    <!-- Título principal de la página -->
+    <h1>Calculadora de Factorial</h1>
+
+    <!-- Campo de entrada para el número -->
+    <input type="number" id="numero" placeholder="Ingrese un número">
+
+    <!-- Botón que activa la función de cálculo -->
+    <button onclick="calcularFactorial()">Calcular Factorial</button>
+
+    <!-- Div donde se mostrará el resultado -->
+    <div id="resultado"></div>
+
+    <script>
+        // Función para calcular el factorial de un número
+        function factorial(n) {
+            // Caso base: si n es 0 o 1, el factorial es 1
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            // Caso recursivo: n multiplicado por el factorial de (n-1)
+            return n * factorial(n - 1);
+        }
+
+        // Función que se ejecuta cuando se hace clic en el botón
+        function calcularFactorial() {
+            // Obtiene el número ingresado por el usuario y lo convierte a entero
+            const numero = parseInt(document.getElementById('numero').value);
+            
+            // Obtiene el elemento donde se mostrará el resultado
+            const resultadoElement = document.getElementById('resultado');
+
+            // Valida que el número sea válido y no negativo
+            if (isNaN(numero) || numero < 0) {
+                resultadoElement.textContent = "Por favor, ingrese un número válido no negativo.";
+                return; // Sale de la función si el número no es válido
+            }
+
+            try {
+                // Intenta calcular el factorial
+                const resultado = factorial(numero);
+                // Muestra el resultado en la página
+                resultadoElement.textContent = `El factorial de ${numero} es ${resultado}`;
+            } catch (error) {
+                // Si ocurre un error
+                resultadoElement.textContent = "El número es demasiado grande para calcular.";
+            }
+        }
+    </script>
+</body>
+</html>
